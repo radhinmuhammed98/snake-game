@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: #0f0f0f;
+  color: #f5f5f5;
+  font-family: "Libre Baskerville", serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game {
+  text-align: center;
+}
+
+h1 {
+  font-size: 4rem;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+.skins button {
+  background: transparent;
+  border: 1px solid #f5f5f5;
+  color: #f5f5f5;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.skins button:hover {
+  background: #f5f5f5;
+  color: #0f0f0f;
+}
+
+.board {
+  margin: 30px auto;
+  width: 420px;
+  height: 420px;
+  display: grid;
+  grid-template-columns: repeat(21, 1fr);
+  grid-template-rows: repeat(21, 1fr);
+  border: 2px solid #f5f5f5;
+}
+
+.cell {
+  width: 100%;
+  height: 100%;
+}
+
+/* Snake body (same for all) */
+.snake-body {
+  background: #f5f5f5;
+}
+
+/* Snake head skins */
+.snake-head.skin-0 {
+  background: #ffffff;
+}
+
+.snake-head.skin-1 {
+  background: #bbbbbb;
+}
+
+.snake-head.skin-2 {
+  background: #777777;
+}
+
+.food {
+  background: #ffffff;
+  opacity: 0.6;
+}
+
+.hud {
+  margin-top: 10px;
+  font-size: 1.1rem;
+}

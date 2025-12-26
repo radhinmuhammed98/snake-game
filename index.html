@@ -4,32 +4,30 @@
   <meta charset="UTF-8">
   <title>Snake</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Old-money serif -->
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <main class="game intro">
-    <h1>Snake</h1>
+<div class="game">
+  <h1>SNAKE</h1>
+  <p class="subtitle">Old money. No mercy.</p>
 
-    <p class="subtitle">Choose your character</p>
+  <div class="skins">
+    <button data-skin="0">Sayipp</button>
+    <button data-skin="1">Vaasu</button>
+    <button data-skin="2">Dashamoolam</button>
+  </div>
 
-    <div class="skins">
-      <button data-skin="0">Sayipp</button>
-      <button data-skin="1">Vaasu</button>
-      <button data-skin="2">Dashamoolam</button>
-    </div>
-
+  <div class="board-wrapper">
     <div class="board"></div>
+    <div class="overlay">Tap to Restart</div>
+  </div>
 
-    <div class="hud">
-      <span>Score: <span id="score">0</span></span>
-    </div>
-  </main>
+  <div class="hud">
+    Score: <span id="score">0</span>
+  </div>
+</div>
 
-  <script src="game.js"></script>
+<script src="game.js"></script>
 </body>
 </html>

@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Character — Snake</title>
+  <title>Snake</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
   <meta name="description" content="Play a minimalist snake game with unique characters.">
 
   <link rel="stylesheet" href="assets/css/character.css">
@@ -12,61 +14,85 @@
 
 <body>
 
-<header class="site-header">
+<header class="topbar">
   <a href="index.html" class="back">← Home</a>
-  <h1 id="char-name">Character</h1>
+  <span id="char-name">Snake</span>
 </header>
 
-<main class="layout">
+<main class="container">
 
-  <!-- LEFT: GAME -->
-  <section class="game-section">
-    <div class="board-wrapper">
+  <section class="game-area">
+    <div class="board-wrap">
       <div class="board"></div>
-      <div class="overlay">Game Over<br><small>Tap to restart</small></div>
+      <div class="overlay">
+        <div>
+          <strong>Game Over</strong><br>
+          <small>Tap to restart</small>
+        </div>
+      </div>
     </div>
 
     <div class="hud">
       Score: <span id="score">0</span>
-    </div>
-
-    <!-- Mobile controls -->
-    <div class="controls">
-      <button data-dir="up">↑</button>
-      <div>
-        <button data-dir="left">←</button>
-        <button data-dir="right">→</button>
-      </div>
-      <button data-dir="down">↓</button>
-      <button data-dir="pause">⏸</button>
+      <span class="hint">Swipe or use arrow keys</span>
     </div>
   </section>
 
-  <!-- RIGHT: INFO -->
-  <aside class="info-section">
-    <img id="char-img" alt="Character head">
-    <p id="char-desc"></p>
+</main>
 
-    <div class="text-block">
-      <h3>About</h3>
-      <p>
-        Each character changes the visual identity of the snake.
-        The rules stay the same. Discipline decides survival.
-      </p>
+<footer class="footer">
+  <a href="about.html">About</a>
+  <a href="privacy.html">Privacy</a>
+  <a href="terms.html">Terms</a>
+</footer>
+
+<script src="assets/js/game.js"></script>
+<script src="assets/js/character.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Snake</title>
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta name="description" content="Play a minimalist snake game with unique characters.">
+
+  <link rel="stylesheet" href="assets/css/character.css">
+</head>
+
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="back">← Home</a>
+  <span id="char-name">Snake</span>
+</header>
+
+<main class="container">
+
+  <section class="game-area">
+    <div class="board-wrap">
+      <div class="board"></div>
+      <div class="overlay">
+        <div>
+          <strong>Game Over</strong><br>
+          <small>Tap to restart</small>
+        </div>
+      </div>
     </div>
 
-    <div class="text-block">
-      <h3>Controls</h3>
-      <p>
-        Arrow keys or on-screen buttons.<br>
-        Space / ⏸ to pause.
-      </p>
+    <div class="hud">
+      Score: <span id="score">0</span>
+      <span class="hint">Swipe or use arrow keys</span>
     </div>
-  </aside>
+  </section>
 
 </main>
 
-<footer class="site-footer">
+<footer class="footer">
   <a href="about.html">About</a>
   <a href="privacy.html">Privacy</a>
   <a href="terms.html">Terms</a>

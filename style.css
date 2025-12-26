@@ -6,12 +6,12 @@
 body {
   margin: 0;
   min-height: 100svh;
-  background: #0c0c0c;
-  color: #f2f2f2;
-  font-family: "Libre Baskerville", serif;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #0b0b0b;
+  color: #f2f2f2;
+  font-family: serif;
 }
 
 .game {
@@ -22,28 +22,25 @@ body {
 }
 
 h1 {
-  font-size: clamp(2rem, 7vw, 3.5rem);
-  margin-bottom: 6px;
-  letter-spacing: 2px;
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  margin: 0;
+  letter-spacing: 3px;
 }
 
 .subtitle {
-  font-size: clamp(0.9rem, 3.5vw, 1rem);
-  opacity: 0.7;
+  opacity: 0.6;
+  margin-bottom: 14px;
 }
 
 .skins {
   display: flex;
-  justify-content: center;
   gap: 8px;
-  flex-wrap: wrap;
-  margin: 14px 0;
+  margin-bottom: 14px;
 }
 
 .skins button {
-  flex: 1 1 120px;
-  padding: 12px;
-  font-family: inherit;
+  flex: 1;
+  padding: 10px;
   background: transparent;
   color: inherit;
   border: 1px solid #f2f2f2;
@@ -66,8 +63,8 @@ h1 {
   height: 100%;
   display: grid;
   grid-template-columns: repeat(21, 1fr);
-  border: 2px solid #f2f2f2;
   background: #111;
+  border: 2px solid #f2f2f2;
 }
 
 .cell {
@@ -75,9 +72,8 @@ h1 {
   height: 100%;
 }
 
-/* Snake */
 .snake-body {
-  background: #eaeaea;
+  background: #e6e6e6;
 }
 
 .snake-head {
@@ -85,28 +81,29 @@ h1 {
   background-position: center;
 }
 
-.snake-head.skin-0 { background-image: url("heads/sayipp.png"); }
-.snake-head.skin-1 { background-image: url("heads/vaasu.png"); }
-.snake-head.skin-2 { background-image: url("heads/dashamoolam.png"); }
+.skin-0 { background-image: url("heads/sayipp.png"); }
+.skin-1 { background-image: url("heads/vaasu.png"); }
+.skin-2 { background-image: url("heads/dashamoolam.png"); }
 
 .food {
-  background: #fff;
+  background: white;
   border-radius: 50%;
 }
 
-/* Overlay */
 .overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle, rgba(0,0,0,.4), rgba(0,0,0,.85));
+  background: rgba(0,0,0,.75);
   display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
 }
 
 .game.over .overlay {
-  display: block;
+  display: flex;
 }
 
 .hud {
   margin-top: 10px;
-  font-size: 1rem;
 }

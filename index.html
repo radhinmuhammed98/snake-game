@@ -2,47 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Snake</title>
+  <title>Snake — Choose Your Fate</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Choose a character and play a minimalist snake game. Calm. Classic. Ruthless.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/main.css">
 </head>
+
 <body>
 
-<div class="game">
+<header class="site-header">
   <h1>SNAKE</h1>
-  <p class="subtitle">Old money. No mercy.</p>
+  <p class="tagline">Choose your fate.</p>
+</header>
 
-  <div class="skins">
-    <button data-skin="0">Sayipp</button>
-    <button data-skin="1">Vaasu</button>
-    <button data-skin="2">Dashamoolam</button>
-  </div>
+<main class="container">
 
-  <div class="board-wrapper">
-    <div class="board"></div>
-    <div class="overlay">Tap to Restart</div>
-  </div>
+  <!-- CHARACTER SELECTION -->
+  <section class="characters">
+    <article class="character" data-char="sayipp">
+      <img src="assets/img/sayipp.jpg" alt="Sayipp">
+      <h2>Sayipp</h2>
+      <p>Cold. Calculated. Precise.</p>
+    </article>
 
-  <div class="hud">
-    Score: <span id="score">0</span>
-  </div>
-</div>
-  <div class="panel left">
-  A game of patience<br>
-  and inevitable error
-</div>
+    <article class="character" data-char="vaasu">
+      <img src="assets/img/vaasu.jpg" alt="Vaasu">
+      <h2>Vaasu</h2>
+      <p>Unpredictable. Ruthless.</p>
+    </article>
 
-<div class="center">
-  <!-- title, board, skins, hud stay here -->
-</div>
+    <article class="character" data-char="dashamoolam">
+      <img src="assets/img/dashamoolam.jpg" alt="Dashamoolam">
+      <h2>Dashamoolam</h2>
+      <p>Slow burn. Absolute chaos.</p>
+    </article>
+  </section>
 
-<div class="panel right">
-  No color<br>
-  No mercy<br>
-  No rewind
-</div>
+  <!-- CONTENT (ADSENSE FRIENDLY) -->
+  <section class="content">
+    <h3>About the Game</h3>
+    <p>
+      This is a minimalist interpretation of the classic Snake game.
+      Each character represents a different personality, expressed
+      through visual style and behavior.
+    </p>
 
+    <h3>How to Play</h3>
+    <p>
+      Select a character, enter their page, and control the snake using
+      your keyboard or touch gestures. The goal is simple: survive.
+    </p>
 
-<script src="game.js"></script>
+    <h3>Why This Game Exists</h3>
+    <p>
+      Built as a calm, distraction-free experience inspired by old
+      arcade logic and editorial design. No noise. No clutter.
+    </p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <nav>
+    <a href="about.html">About</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms</a>
+  </nav>
+  <p>© 2025 Snake</p>
+</footer>
+
+<script src="assets/js/home.js"></script>
 </body>
 </html>

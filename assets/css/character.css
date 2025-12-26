@@ -1,0 +1,177 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0f0f0d;
+  color: #f4f1ec;
+  font-family: "Libre Baskerville", Georgia, serif;
+}
+
+/* ---------- HEADER ---------- */
+
+.site-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+}
+
+.back {
+  color: inherit;
+  text-decoration: none;
+  opacity: .6;
+}
+
+.back:hover {
+  opacity: 1;
+}
+
+/* ---------- LAYOUT ---------- */
+
+.layout {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: minmax(320px, 520px) 1fr;
+  gap: 40px;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- GAME ---------- */
+
+.board-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.board {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(21, 1fr);
+  background: #141412;
+  border: 1px solid rgba(244,241,236,.4);
+}
+
+.cell {
+  width: 100%;
+  height: 100%;
+}
+
+.snake-body {
+  background: #f4f1ec;
+  opacity: .85;
+}
+
+.snake-head {
+  background-size: cover;
+  background-position: center;
+}
+
+.food {
+  background: #000;
+  border-radius: 50%;
+}
+
+/* ---------- OVERLAY ---------- */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15,15,13,.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.game-over .overlay {
+  display: flex;
+}
+
+/* ---------- HUD ---------- */
+
+.hud {
+  margin-top: 12px;
+  font-size: .9rem;
+}
+
+/* ---------- CONTROLS ---------- */
+
+.controls {
+  margin-top: 16px;
+  display: none;
+  gap: 10px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.controls button {
+  background: transparent;
+  border: 1px solid rgba(244,241,236,.5);
+  color: inherit;
+  padding: 10px 14px;
+  font-size: 1.2rem;
+}
+
+.controls div {
+  display: flex;
+  gap: 10px;
+}
+
+@media (max-width: 900px) {
+  .controls {
+    display: flex;
+  }
+}
+
+/* ---------- INFO ---------- */
+
+.info-section img {
+  width: 100%;
+  max-width: 220px;
+  display: block;
+  filter: grayscale(100%);
+  border: 1px solid rgba(244,241,236,.4);
+  margin-bottom: 16px;
+}
+
+.info-section p {
+  opacity: .8;
+}
+
+.text-block {
+  margin-top: 24px;
+}
+
+/* ---------- FOOTER ---------- */
+
+.site-footer {
+  margin-top: 40px;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid rgba(244,241,236,.2);
+}
+
+.site-footer a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: inherit;
+  opacity: .6;
+}

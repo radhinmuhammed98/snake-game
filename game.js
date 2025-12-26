@@ -1,13 +1,14 @@
-const board = document.querySelector(".board");
-const overlay = document.querySelector(".overlay");
-const scoreEl = document.getElementById("score");
-const gameEl = document.querySelector(".game");
-const skinBtns = document.querySelectorAll(".skins button");
+let board, cells;
+let snake, food;
+let direction, pendingDir;
+let running = false;
+let paused = false;
+let score = 0;
+let lastTime = 0;
+let headImage;
 
 const SIZE = 21;
-const TOTAL = SIZE * SIZE;
-const SPEED = 140;
-
+const SPEED = 140; // ms per move
 const DIR = {
   UP: -SIZE,
   DOWN: SIZE,
@@ -15,51 +16,71 @@ const DIR = {
   RIGHT: 1
 };
 
-let cells = [];
-let snake = [];
-let food = 0;
-let dir = DIR.DOWN;
-let nextDir = DIR.DOWN;
-let skin = 0;
-let score = 0;
-let loop = null;
-let paused = false;
+let lastMove = 0;
+let dirLocked = false;
 
 /* ---------- INIT ---------- */
-function createBoard() {
-  board.innerHTML = "";
+
+function initGame(head) {
+  headImage = head;
+  board = document.querySelector(".board");
+  board.style.touchAction = "none"; // IMPORTANT
+
   cells = [];
-  for (let i = 0; i < TOTAL; i++) {
+  board.innerHTML = "";
+
+  for (let i = 0; i < SIZE * SIZE; i++) {
     const c = document.createElement("div");
     c.className = "cell";
     board.appendChild(c);
     cells.push(c);
   }
+
+  startGame();
 }
 
-function startGame(s) {
-  skin = s;
-  score = 0;
-  scoreEl.textContent = score;
-  paused = false;
+/* ---------- GAME STATE ---------- */
 
+function startGame() {
   snake = [210, 189, 168];
-  dir = nextDir = DIR.DOWN;
+  direction = DIR.DOWN;
+  pendingDir = direction;
+  score = 0;
+  paused = false;
+  running = true;
+  lastMove = 0;
 
   spawnFood();
-  gameEl.classList.remove("over");
+  document.body.classList.remove("game-over");
 
-  clearInterval(loop);
-  loop = setInterval(tick, SPEED);
-  render();
+  requestAnimationFrame(loop);
 }
 
-/* ---------- GAME LOOP ---------- */
-function tick() {
-  if (paused) return;
+function endGame() {
+  running = false;
+  document.body.classList.add("game-over");
+}
 
-  dir = nextDir;
-  const head = snake[0] + dir;
+/* ---------- LOOP ---------- */
+
+function loop(time) {
+  if (!running) return;
+
+  if (!paused && time - lastMove > SPEED) {
+    step();
+    lastMove = time;
+    dirLocked = false;
+  }
+
+  render();
+  requestAnimationFrame(loop);
+}
+
+/* ---------- LOGIC ---------- */
+
+function step() {
+  direction = pendingDir;
+  const head = snake[0] + direction;
 
   if (collision(head)) {
     endGame();
@@ -70,67 +91,101 @@ function tick() {
 
   if (head === food) {
     score += 10;
-    scoreEl.textContent = score;
     spawnFood();
+    document.getElementById("score").textContent = score;
   } else {
     snake.pop();
   }
+}
 
-  render();
+function collision(pos) {
+  return (
+    pos < 0 ||
+    pos >= SIZE * SIZE ||
+    snake.includes(pos) ||
+    (direction === DIR.LEFT && pos % SIZE === SIZE - 1) ||
+    (direction === DIR.RIGHT && pos % SIZE === 0)
+  );
+}
+
+function spawnFood() {
+  do {
+    food = Math.floor(Math.random() * SIZE * SIZE);
+  } while (snake.includes(food));
 }
 
 /* ---------- RENDER ---------- */
-function render() {
-  cells.forEach(c => c.className = "cell");
 
-  snake.forEach((pos, i) => {
+function render() {
+  cells.forEach(c => {
+    c.className = "cell";
+    c.style.backgroundImage = "";
+  });
+
+  snake.forEach((p, i) => {
     if (i === 0) {
-      cells[pos].classList.add("snake-head", `skin-${skin}`);
+      cells[p].classList.add("snake-head");
+      cells[p].style.backgroundImage = `url(${headImage})`;
     } else {
-      cells[pos].classList.add("snake-body");
+      cells[p].classList.add("snake-body");
     }
   });
 
   cells[food].classList.add("food");
 }
 
-/* ---------- HELPERS ---------- */
-function spawnFood() {
-  do {
-    food = Math.floor(Math.random() * TOTAL);
-  } while (snake.includes(food));
+/* ---------- SAFE DIRECTION CHANGE ---------- */
+
+function setDirection(newDir) {
+  if (dirLocked) return;
+
+  // prevent opposite direction
+  if (direction + newDir === 0) return;
+
+  pendingDir = newDir;
+  dirLocked = true;
 }
 
-function collision(p) {
-  return (
-    p < 0 ||
-    p >= TOTAL ||
-    snake.includes(p) ||
-    (dir === DIR.LEFT && p % SIZE === SIZE - 1) ||
-    (dir === DIR.RIGHT && p % SIZE === 0)
-  );
-}
+/* ---------- KEYBOARD ---------- */
 
-function endGame() {
-  clearInterval(loop);
-  gameEl.classList.add("over");
-}
-
-/* ---------- INPUT ---------- */
 document.addEventListener("keydown", e => {
-  if (e.key === "ArrowUp" && dir !== DIR.DOWN) nextDir = DIR.UP;
-  if (e.key === "ArrowDown" && dir !== DIR.UP) nextDir = DIR.DOWN;
-  if (e.key === "ArrowLeft" && dir !== DIR.RIGHT) nextDir = DIR.LEFT;
-  if (e.key === "ArrowRight" && dir !== DIR.LEFT) nextDir = DIR.RIGHT;
+  if (e.key === "ArrowUp") setDirection(DIR.UP);
+  if (e.key === "ArrowDown") setDirection(DIR.DOWN);
+  if (e.key === "ArrowLeft") setDirection(DIR.LEFT);
+  if (e.key === "ArrowRight") setDirection(DIR.RIGHT);
   if (e.key === " ") paused = !paused;
 });
 
-overlay.addEventListener("click", () => startGame(skin));
+/* ---------- ONE-FINGER SWIPE ---------- */
 
-skinBtns.forEach(b =>
-  b.onclick = () => startGame(+b.dataset.skin)
-);
+let touchStartX = 0;
+let touchStartY = 0;
 
-/* ---------- START ---------- */
-createBoard();
-startGame(0);
+board?.addEventListener("touchstart", e => {
+  const t = e.touches[0];
+  touchStartX = t.clientX;
+  touchStartY = t.clientY;
+}, { passive: true });
+
+board?.addEventListener("touchmove", e => {
+  if (dirLocked) return;
+
+  const t = e.touches[0];
+  const dx = t.clientX - touchStartX;
+  const dy = t.clientY - touchStartY;
+
+  if (Math.abs(dx) < 20 && Math.abs(dy) < 20) return;
+
+  if (Math.abs(dx) > Math.abs(dy)) {
+    setDirection(dx > 0 ? DIR.RIGHT : DIR.LEFT);
+  } else {
+    setDirection(dy > 0 ? DIR.DOWN : DIR.UP);
+  }
+
+  touchStartX = t.clientX;
+  touchStartY = t.clientY;
+}, { passive: true });
+
+/* ---------- UI ---------- */
+
+document.querySelector(".overlay").onclick = startGame;

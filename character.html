@@ -1,45 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Snake Game</title>
-  <link rel="stylesheet" href="assets/css/character.css">
+<meta charset="UTF-8">
+<meta name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Snake</title>
+<link rel="stylesheet" href="assets/css/game.css">
 </head>
+
 <body>
 
-<header class="topbar">
-  <a href="index.html" class="back">← Home</a>
-  <span id="char-name">Snake</span>
+<header class="top">
+  <a href="index.html">← Home</a>
+  <span>Snake</span>
 </header>
 
-<main class="container">
+<main class="wrapper">
+  <div class="game-container">
+    <div class="board"></div>
 
-  <section class="game-area">
-    <div class="board-wrap">
-      <div class="board"></div>
-      <div class="overlay">
-        <div>
-          <strong>Game Over</strong><br>
-          <small>Tap to restart</small>
-        </div>
+    <div class="overlay">
+      <div>
+        <h2>Game Over</h2>
+        <p>Tap to restart</p>
       </div>
     </div>
-    <div class="hud">
-      Score: <span id="score">0</span>
-      <span class="hint">Swipe or arrow keys</span>
-    </div>
-  </section>
+  </div>
 
+  <div class="hud">
+    Score: <span id="score">0</span>
+    <span class="hint">Swipe / Arrow keys</span>
+  </div>
 </main>
 
-<footer class="footer">
-  <a href="about.html">About</a>
-  <a href="privacy.html">Privacy</a>
-  <a href="terms.html">Terms</a>
-</footer>
-
 <script src="assets/js/game.js"></script>
-<script src="assets/js/character.js"></script>
 </body>
 </html>

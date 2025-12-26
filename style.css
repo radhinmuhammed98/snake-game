@@ -71,9 +71,9 @@ h1 {
   border-radius: 3px;
 }
 
-.snake-head.skin-0 { background-image: url("heads/sayipp.jpg"); }
-.snake-head.skin-1 { background-image: url("heads/vaasu.jpg"); }
-.snake-head.skin-2 { background-image: url("heads/dashamoolam.jpg"); }
+.snake-head.skin-0 { background-image: url("heads/sayipp.pmg"); }
+.snake-head.skin-1 { background-image: url("heads/vaasu.png"); }
+.snake-head.skin-2 { background-image: url("heads/dashamoolam.png"); }
 
 .food {
   background: #fff;

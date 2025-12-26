@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Character — Snake</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Play a minimalist snake game with unique characters.">
+
+  <link rel="stylesheet" href="assets/css/character.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="back">← Home</a>
+  <h1 id="char-name">Character</h1>
+</header>
+
+<main class="layout">
+
+  <!-- LEFT: GAME -->
+  <section class="game-section">
+    <div class="board-wrapper">
+      <div class="board"></div>
+      <div class="overlay">Game Over<br><small>Tap to restart</small></div>
+    </div>
+
+    <div class="hud">
+      Score: <span id="score">0</span>
+    </div>
+
+    <!-- Mobile controls -->
+    <div class="controls">
+      <button data-dir="up">↑</button>
+      <div>
+        <button data-dir="left">←</button>
+        <button data-dir="right">→</button>
+      </div>
+      <button data-dir="down">↓</button>
+      <button data-dir="pause">⏸</button>
+    </div>
+  </section>
+
+  <!-- RIGHT: INFO -->
+  <aside class="info-section">
+    <img id="char-img" alt="Character head">
+    <p id="char-desc"></p>
+
+    <div class="text-block">
+      <h3>About</h3>
+      <p>
+        Each character changes the visual identity of the snake.
+        The rules stay the same. Discipline decides survival.
+      </p>
+    </div>
+
+    <div class="text-block">
+      <h3>Controls</h3>
+      <p>
+        Arrow keys or on-screen buttons.<br>
+        Space / ⏸ to pause.
+      </p>
+    </div>
+  </aside>
+
+</main>
+
+<footer class="site-footer">
+  <a href="about.html">About</a>
+  <a href="privacy.html">Privacy</a>
+  <a href="terms.html">Terms</a>
+</footer>
+
+<script src="assets/js/game.js"></script>
+<script src="assets/js/character.js"></script>
+</body>
+</html>

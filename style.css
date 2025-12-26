@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -9,52 +8,75 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #0b0b0b;
-  color: #f2f2f2;
-  font-family: serif;
+  background: #0f0f0d;
+  color: #f4f1ec;
+  font-family: "Libre Baskerville", serif;
 }
 
+/* -------- LAYOUT -------- */
+
 .game {
-  width: 100%;
-  max-width: 520px;
-  padding: 16px;
+  width: min(1100px, 95vw);
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, 520px) 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+@media (max-width: 900px) {
+  .game {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* -------- SIDE PANELS -------- */
+
+.panel {
+  opacity: .85;
+  font-size: .95rem;
+  line-height: 1.6;
+}
+
+.panel.left {
+  text-align: right;
+}
+
+.panel.right {
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .panel {
+    display: none;
+  }
+}
+
+/* -------- CENTER -------- */
+
+.center {
   text-align: center;
 }
 
 h1 {
-  font-size: clamp(2rem, 8vw, 3.5rem);
-  margin: 0;
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
   letter-spacing: 3px;
+  margin: 0;
 }
 
 .subtitle {
-  opacity: 0.6;
-  margin-bottom: 14px;
+  margin-top: 6px;
+  opacity: .6;
+  font-size: .95rem;
 }
 
-.skins {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-
-.skins button {
-  flex: 1;
-  padding: 10px;
-  background: transparent;
-  color: inherit;
-  border: 1px solid #f2f2f2;
-  cursor: pointer;
-}
-
-.skins button:active {
-  background: #f2f2f2;
-  color: #000;
-}
+/* -------- BOARD -------- */
 
 .board-wrapper {
   position: relative;
   width: 100%;
+  max-width: 520px;
+  margin: 28px auto;
   aspect-ratio: 1;
 }
 
@@ -63,9 +85,11 @@ h1 {
   height: 100%;
   display: grid;
   grid-template-columns: repeat(21, 1fr);
-  background: #111;
-  border: 2px solid #f2f2f2;
+  background: #141412;
+  border: 1px solid rgba(244,241,236,.4);
 }
+
+/* -------- CELLS -------- */
 
 .cell {
   width: 100%;
@@ -73,37 +97,69 @@ h1 {
 }
 
 .snake-body {
-  background: #e6e6e6;
+  background: #f4f1ec;
+  opacity: .85;
 }
 
 .snake-head {
   background-size: cover;
   background-position: center;
+  outline: 1px solid #000;
 }
-
-.skin-0 { background-image: url("heads/sayipp.png"); }
-.skin-1 { background-image: url("heads/vaasu.png"); }
-.skin-2 { background-image: url("heads/dashamoolam.png"); }
 
 .food {
-  background: white;
+  background: #000;
   border-radius: 50%;
 }
+
+/* -------- HEAD SKINS -------- */
+
+.skin-0 { background-image: url("heads/sayipp.jpg"); }
+.skin-1 { background-image: url("heads/vaasu.jpg"); }
+.skin-2 { background-image: url("heads/dashamoolam.jpg"); }
+
+/* -------- OVERLAY -------- */
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,.75);
+  background: rgba(15,15,13,.85);
   display: none;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
 }
 
 .game.over .overlay {
   display: flex;
 }
 
+/* -------- CONTROLS -------- */
+
+.skins {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.skins button {
+  background: transparent;
+  border: none;
+  color: #9a9a9a;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.skins button:hover {
+  color: #f4f1ec;
+}
+
+/* -------- HUD -------- */
+
 .hud {
-  margin-top: 10px;
+  margin-top: 14px;
+  font-size: .95rem;
+  letter-spacing: 1px;
 }

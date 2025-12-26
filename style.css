@@ -1,11 +1,12 @@
 * {
   box-sizing: border-box;
+  touch-action: manipulation;
 }
 
 body {
   margin: 0;
-  height: 100vh;
-  background: #0f0f0f;
+  min-height: 100vh;
+  background: #0b0b0b;
   color: #f5f5f5;
   font-family: "Libre Baskerville", serif;
   display: flex;
@@ -15,43 +16,42 @@ body {
 
 .game {
   text-align: center;
+  position: relative;
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 8vw, 4rem);
   letter-spacing: 2px;
-  margin-bottom: 10px;
 }
 
 .subtitle {
   opacity: 0.7;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .skins button {
   background: transparent;
   border: 1px solid #f5f5f5;
   color: #f5f5f5;
-  padding: 10px 20px;
-  margin: 5px;
-  cursor: pointer;
+  padding: 12px 18px;
+  margin: 6px;
   font-family: inherit;
-  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .skins button:hover {
   background: #f5f5f5;
-  color: #0f0f0f;
+  color: #000;
 }
 
 .board {
-  margin: 30px auto;
-  width: 420px;
-  height: 420px;
+  margin: 20px auto;
+  width: min(90vw, 420px);
+  aspect-ratio: 1;
   display: grid;
   grid-template-columns: repeat(21, 1fr);
-  grid-template-rows: repeat(21, 1fr);
   border: 2px solid #f5f5f5;
+  position: relative;
 }
 
 .cell {
@@ -59,30 +59,41 @@ h1 {
   height: 100%;
 }
 
-/* Snake body (same for all) */
+/* Snake */
 .snake-body {
-  background: #f5f5f5;
+  background: #eaeaea;
 }
 
-/* Snake head skins */
-.snake-head.skin-0 {
-  background: #ffffff;
+/* Snake head with image */
+.snake-head {
+  background-size: cover;
+  background-position: center;
+  border-radius: 3px;
 }
 
-.snake-head.skin-1 {
-  background: #bbbbbb;
-}
-
-.snake-head.skin-2 {
-  background: #777777;
-}
+.snake-head.skin-0 { background-image: url("heads/sayipp.jpg"); }
+.snake-head.skin-1 { background-image: url("heads/vaasu.jpg"); }
+.snake-head.skin-2 { background-image: url("heads/dashamoolam.jpg"); }
 
 .food {
-  background: #ffffff;
+  background: #fff;
   opacity: 0.6;
+  border-radius: 50%;
 }
 
+/* HUD */
 .hud {
-  margin-top: 10px;
   font-size: 1.1rem;
+}
+
+/* GAME OVER OVERLAY */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(0,0,0,0.3), rgba(0,0,0,0.85));
+  display: none;
+}
+
+.game.over .overlay {
+  display: block;
 }

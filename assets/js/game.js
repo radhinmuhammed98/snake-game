@@ -28,6 +28,20 @@ for (let i = 0; i < SIZE * SIZE; i++) {
 
 start();
 
+function init() {
+  resize();
+
+  snake = [{ x: 10, y: 10 }];
+  dx = 1;
+  dy = 0;
+  score = 0;
+  running = true;
+
+  overlay.style.display = "none"; // ✅ NEW
+
+  placeFood();
+}
+
 /* ---------- GAME ---------- */
 
 function start() {

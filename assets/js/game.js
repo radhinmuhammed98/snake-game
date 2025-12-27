@@ -1,3 +1,6 @@
+const overlay = document.getElementById("overlay");
+const restartBtn = document.getElementById("restartBtn");
+
 const SIZE = 21;
 const SPEED = 140;
 

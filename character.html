@@ -1,38 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Snake</title>
-<link rel="stylesheet" href="assets/css/game.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snake</title>
+  <link rel="stylesheet" href="game.css" />
 </head>
-
 <body>
 
-<header class="top">
-  <a href="index.html">← Home</a>
-  <span>Snake</span>
-</header>
-
-<main class="wrapper">
   <div class="game-container">
-    <div class="board"></div>
+    <canvas id="game"></canvas>
 
-    <div class="overlay">
-      <div>
-        <h2>Game Over</h2>
-        <p>Tap to restart</p>
+    <div class="overlay" id="overlay">
+      <div class="overlay-box">
+        <div class="game-over-text">GAME OVER</div>
+        <button id="restartBtn">Restart</button>
       </div>
     </div>
   </div>
 
-  <div class="hud">
-    Score: <span id="score">0</span>
-    <span class="hint">Swipe / Arrow keys</span>
-  </div>
-</main>
-
-<script src="assets/js/game.js"></script>
+  <script src="game.js"></script>
 </body>
 </html>
